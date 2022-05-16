@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SqlTriggerGenerator2
 {
-    class TriggerPattern
+    class TriggerPatterns
     {
         public string OperationName { private set; get; }
         public string MainBody { private set; get; }
         public string AttributeBody { private set; get; }
         public string SpecificInitBody { private set; get; }
 
-        public TriggerPattern(string operationName, string mainBody, string specificMainBody, string specificInitBody)
+        public TriggerPatterns(string operationName, string mainBody, string specificMainBody, string specificInitBody)
         {
             OperationName = operationName;
             MainBody = mainBody;

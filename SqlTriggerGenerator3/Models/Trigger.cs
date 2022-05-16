@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SqlTriggerGenerator2
 {
-    public class TriggerData
+    public class Trigger
     {
         public List<SqlАttribyte> Attributes { set; get;  }
 
         public SqlАttribyte OrderAttribute { set; get; }
         public string TableName { set; get; }
 
-        public TriggerData()
+        public Trigger()
         {
             Attributes = new List<SqlАttribyte>();
         }

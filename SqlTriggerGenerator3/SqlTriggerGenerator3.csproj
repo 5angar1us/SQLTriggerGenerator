@@ -44,19 +44,77 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Triggers\TriggerData.cs" />
-    <Compile Include="Builder\TriggerDataBuilder.cs" />
-    <Compile Include="PatternFactory.cs" />
-    <Compile Include="PatternFormater.cs" />
-    <Compile Include="Patterns\TriggerPattern.cs" />
+    <Compile Include="Core\ETriggerType.cs" />
+    <Compile Include="FolderNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FolderNames.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Trigger.cs" />
+    <Compile Include="FileNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FileNames.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PatternReader.cs" />
+    <Compile Include="TagNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TagNames.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TriggerDataBuilder.cs" />
+    <Compile Include="Core\PatternFactory.cs" />
+    <Compile Include="Core\PatternFormater.cs" />
+    <Compile Include="Models\TriggerPatterns.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TriggerCreator.cs" />
-    <Compile Include="SQlАttribyte.cs" />
+    <Compile Include="Core\TriggerCreator.cs" />
+    <Compile Include="Models\SQlАttribyte.cs" />
+    <Compile Include="TriggerWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="TriggerPatterns\DeleteSpecialInitBody.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TriggerPatterns\DeleteSpecialMainBody.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TriggerPatterns\InsertSpecialInitBody.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TriggerPatterns\InsertSpecialMainBody.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TriggerPatterns\MainPartTriggerPattern.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TriggerPatterns\UpdateSpecialInitBody.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TriggerPatterns\UpdateSpecialMainBody.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FileNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FileNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FolderNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FolderNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TagNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TagNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

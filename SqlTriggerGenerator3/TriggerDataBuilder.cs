@@ -9,11 +9,11 @@ namespace SqlTriggerGenerator2
 {
     public class TriggerDataBuilder
     {
-        TriggerData trigger;
+        Trigger trigger;
 
         private TriggerDataBuilder()
         {
-            trigger = new TriggerData();
+            trigger = new Trigger();
         }
 
         public TriggerDataBuilder AddAttribute(string attributeName)
@@ -37,7 +37,7 @@ namespace SqlTriggerGenerator2
             return this;
         }
 
-        public TriggerData Build()
+        public Trigger Build()
         {
             return trigger;
         }
