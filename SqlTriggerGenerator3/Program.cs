@@ -9,12 +9,13 @@ namespace SqlTriggerGenerator2
 {
     class Program
     {
-        private static readonly string splisText = " \n -- =================================      ====================================== \n";
-        private static readonly string triggerPath = Path.Combine(GetPath(), @"я.SQL scripts\ProtocolTrigger.sql");
+       
+        private static readonly string triggerPatternFolderPath = Path.Combine(GetPath(), FolderNames.TriggerPatterns);
+        private static readonly string triggerOutput = Path.Combine(GetPath(), "Init_triggers.sql");
 
         static void Main(string[] args)
         {
-            List<TriggerData> triggers = new List<TriggerData>();
+            List<Trigger> triggers = new List<Trigger>();
 
             triggers.Add(TriggerDataBuilder.Create()
                 .SetTableName("Subjects")
@@ -23,34 +24,21 @@ namespace SqlTriggerGenerator2
                 .Build());
 
            
-          
-            PatternFactory patternFactory = new PatternFactory(GetPath());
-            TriggerPattern insertPattern = patternFactory.GetInsertPattern();
-            TriggerPattern updatePattern = patternFactory.GetUpdatePattern();
-            TriggerPattern deletePattern = patternFactory.GetDeletePattern();
-
+            PatternReader reader = new PatternReader(triggerPatternFolderPath);
+            PatternFactory patternFactory = new PatternFactory(reader);
             TriggerCreator triggerCreator = new TriggerCreator();
 
-            using (StreamWriter sw = new StreamWriter(triggerPath, false, Encoding.Default))
+            using (StreamWriter streamWriter = new StreamWriter(triggerOutput, append: false,Encoding.Default))
             {
-                sw.WriteLine("use StudentTesting");
-                sw.WriteLine(splisText);
-                triggers.ForEach(o =>
-                {
-                    sw.WriteLine(triggerCreator.CreateTrigger(o, insertPattern) + Environment.NewLine);
-                    sw.WriteLine(triggerCreator.CreateTrigger(o, updatePattern) + Environment.NewLine);
-                    sw.WriteLine(triggerCreator.CreateTrigger(o, deletePattern) + Environment.NewLine);
-                    sw.WriteLine(splisText);
-                });
-
+                TriggerWriter writer = new TriggerWriter(patternFactory, triggerCreator);
+                writer.Write(streamWriter, triggers);
             }
-
+            //to do сделать получение пути из результирующего файла из консоли
+            //to do сделать получени информации о таблицах и их атрибутов из файла
         }
         private static string GetPath()
         {
-            DirectoryInfo directory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent;
-            string path = directory.FullName;
-            return path;
+            return Directory.GetCurrentDirectory();
         }
     }
 }

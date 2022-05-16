@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30204.135
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlTriggerGenerator3", "SqlTriggerGenerator3\SqlTriggerGenerator3.csproj", "{BA92ACAA-4771-42F1-BC6F-7FE4A26DDF6A}"
 EndProject
